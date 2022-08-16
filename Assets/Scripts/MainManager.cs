@@ -57,7 +57,11 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                if(GameManager.Instance!=null){
+                    GameManager.Instance.LoadScore();
+                }
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
             }
         }
     }
@@ -66,6 +70,9 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        if(GameManager.Instance!=null){
+            GameManager.Instance.SaveScore(m_Points);
+        }
     }
 
     public void GameOver()
